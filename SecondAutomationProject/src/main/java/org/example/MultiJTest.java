@@ -145,4 +145,31 @@ public class MultiJTest {
         Assert.assertEquals(actualResult,expectedResult, "Comment error: error in posting the comment");
     }
 
+    @Test
+    public static void verifyUserIsAbleToReferAProduct(){
+        //Register a user
+        verifyUserShouldBeAbleToRegisterSuccessfully();
+        //Click on Apparel
+        clickOnElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[3]//a[@href=\"/apparel\"]"));
+        //Click on shoes heading
+        clickOnElement(By.xpath("//h2[@class=\"title\"]/a[@href=\"/shoes\"]"));
+        //Click on a product
+        clickOnElement(By.xpath("//h2[@class=\"product-title\"]/a[@href=\"/adidas-consortium-campus-80s-running-shoes\"]"));
+        //Click on Email a friend button
+        clickOnElement(By.xpath("//div[@class=\"email-a-friend\"]/button"));
+        //Enter Friend's email
+        typeText(By.id("FriendEmail"), "friend@gmail.com");
+        //Enter personal message
+        typeText(By.id("PersonalMessage"), "Hey check this out");
+        //Click on Send email button
+        clickOnElement(By.name("send-email"));
+
+        String actualResult = getTextFromElement(By.xpath("//div[@class=\"result\"]"));
+        String expectedResult = "Your message has been sent.";
+
+        Assert.assertEquals(actualResult,expectedResult, "Error: Unable to refer the product");
+
+
+    }
+
 }
