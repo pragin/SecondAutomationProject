@@ -60,19 +60,11 @@ public class MultiJTest {
 
     }
 
-//    @AfterMethod
+    @AfterMethod
     public static void  closeBrowser(){
         driver.close();
     }
-    //Hovering on the menu and click on submenu item
-    public static void hoverOnElement(By by){
-        //Locating the parent menu
-        WebElement element = driver.findElement(by);
-        Actions actions = new Actions(driver);
-        //Hovering on main menu
-        actions.moveToElement(element);
-
-    }
+    
 
     // To verify your is able to register successfully
     @Test
@@ -119,14 +111,20 @@ public class MultiJTest {
 
     }
 
-    //To verify user is able navigate to desktop page
-//    @Test
-//    public  static void verifyUserIsAbleToNavigateToTheDesktopPage(){
-////        Locating the  main menu "Desktop"
-//        hoverOnElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[1]/a[@href=\"/computers\"]"));
-////        Location the sub-menu item
-//        hoverOnElement(By.xpath(""));
-//    }
+//    To verify user is able navigate to desktop page
+    @Test
+    public  static void verifyUserIsAbleToNavigateToTheDesktopPage(){
+        //Click on computers from the main menu
+        clickOnElement(By.xpath("//div[@class=\"header-menu\"]/ul[1]/li[1]/a[@href=\"/computers\"]"));
+        //Click on Desktops heading
+        clickOnElement(By.xpath("//h2/a[@href=\"/desktops\"]"));
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("desktops"));
+
+
+
+
+    }
 
     @Test
     public static void verifyUserIsAbleToPostAComment(){
